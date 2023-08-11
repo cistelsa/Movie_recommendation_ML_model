@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Campo de Selección desde CSV</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="{{url_for('static', path='/css/styles.css')}}" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="{{url_for('static', path='/img/favicon.ico')}}">
+    
+    <script>
+        var peliculasOptions = {{ selected_data_movies|tojson }};
+        var idiomaOptions = {{ selected_data_language|tojson }};
+        var franquiciaOptions = {{ selected_data_collection|tojson }};
+        var paisOptions = {{ selected_data_countries|tojson }};
+        var productoraOptions = {{ selected_data_companies|tojson }};
+        var directorOptions = {{ selected_data_directors|tojson }};
+    </script>
+    
+</head>
+<body>
+    <header>
+        <img src="{{url_for('static', path='/img/logo_dark.png')}}" alt="CisFlix" class="logo">
+        <h1>MVP: Modelo ML Recomendación de Películas</h1>
+        <div class="social-icons">
+            <a href="https://www.youtube.com/" target="_blank"><img src="{{url_for('static', path='/img/icono_youtube.png')}}" alt="YouTube"></a>
+            <a href="https://github.com/" target="_blank"><img src="{{url_for('static', path='/img/icono_github.png')}}" alt="GitHub"></a>
+            <a href="#" target="_blank"><img src="{{url_for('static', path='/img/icono_web.png')}}" alt="Sitio Web"></a>
+        </div>
+    </header>
+    <div class="title">
+        <h1>MVP: Modelo ML Recomendación de Películas</h1>
+      </div>
+    <div class="search" id="flex-container">
+        <div id="select-container">
+            <label for="idioma-select">Consulta cantidad de películas por Idioma:
+            <select class="js-example-basic-single" id="idioma-select" name="idioma">
+                           <option value="" disabled selected>Selecciona un idioma</option>
+           </select></label>
+             <button id="consultar-button">Ir</button>
+             
+             
+                <br>
+                <br>            
+                <label for="pelicula-select">Consulta duración y año de la película :
+                <select class="js-example-basic-single" id="pelicula-select" name="pelicula">
+                    <option value="" disabled selected>Selecciona una película</option>
+                </select></label>
+                <button id="consultar-duracion-button">Ir</button>
+                <br>
+                <br>
+                <label for="franquicia-select">Consulta Cantidad de Películas y Ganancia por Franquicia:
+                <select class="js-example-basic-single" id="franquicia-select" name="franquicia">
+                    <option value="" disabled selected>Selecciona una franquicia</option>
+                </select></label>
+                <button id="consultar-franquicia-button">Ir</button>
+                <br>
+                <br>
+                <label for="pais-select">Consulta cantidad de peliculas por país:
+                <select class="js-example-basic-single" id="pais-select" name="pais">
+                    <option value="" disabled selected>Selecciona un País</option>
+                </select></label>
+                <button id="consultar-pais-button">Ir</button>
+                <br>
+                <br>
+                <label for="productora-select">Consulta Ganancia total y cantidad de películas por Productora:
+                <select class="js-example-basic-single" id="productora-select" name="productora">
+                    <option value="" disabled selected>Selecciona una Productora</option>
+                </select></label>
+                <button id="consultar-productora-button">Ir</button>
+                <br>
+                <br>
+                <label for="director-select">Consulta datos importantes por Director:
+                <select class="js-example-basic-single" id="director-select" name="director">
+                    <option value="" disabled selected>Selecciona un Director</option>
+                </select></label>
+                <button id="consultar-director-button">Ir</button>
+                <br>
+                <br>
+                <label for="recomendacion-select">Consulta las 5 Películas recomendadas en 2 modelos ML:
+                <select class="js-example-basic-single" id="recomendacion-select" name="recomendacion">
+                    <option value="" disabled selected>Selecciona una Película</option>
+                </select></label>
+                <button id="consultar-recomendacion-button">Ir</button>
+
+        </div>
+        <div class="other-content">
+            <h2>KEY ENABLER</h2>
+            <img src="{{url_for('static', path='/img/banner_herramientas.png')}}" alt="Banner Herramientas" class="herramientas">
+            <br>
+            Próximamente la creación de un Dashboard, de analisis de correlaciones y patrones de datos...
+        </div>
+    </div>
+    
+    <div id="resultado-container"></div>
+    <section id="pie-pagina">Data Engineer, Data Analyst, Data Scientist and ML: Camilo Ortiz - Modelo y Proyecto 100% Autoría - Todos los derechos reservados 2023 - Bogotá - Colombia</section>
+    <script src="{{url_for('static', path='/js/script.js')}}"></script>
+    
+        <script>
+        $(document).ready(function () {
+                        
+            var idiomaInput = $("#idioma-select");
+    
+    // Inicializar Select2 en el campo de texto
+    idiomaInput.select2({
+        data: idiomaOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona un Idioma"
+    });
+
+            // Manejar clic en el botón
+        $("#consultar-button").click(function () {
+            var idioma = idiomaInput.val();
+
+            $.ajax({
+                type: "GET",
+                url: "/peliculas_idioma",
+                data: { idioma: idioma },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    resultadoContainer.html("La cantidad de películas producidas en " + response.idioma + " es de: " + response.cantidad + " películas.");
+                }
+            });
+        });
+
+        var peliculaInput = $("#pelicula-select");
+    
+    // Inicializar Select2 en el campo de texto
+    peliculaInput.select2({
+        data: peliculasOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona Película",
+    });
+
+          
+    // Manejar selección de película y clic en el botón
+    $("#consultar-duracion-button").click(function () {
+        var pelicula = peliculaInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/peliculas_duracion",
+                data: { pelicula: pelicula },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    resultadoContainer.html("La película tiene una duración de " + response.duracion + " minutos y se estrenó en " + response.anio + ".");
+                    
+                }
+
+            });
+        });
+
+        var franquiciaInput = $("#franquicia-select");
+    
+    // Inicializar Select2 en el campo de texto
+    franquiciaInput.select2({
+        data: franquiciaOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona una Franquicia"
+    });
+
+    // Manejar selección de película y clic en el botón
+    $("#consultar-franquicia-button").click(function () {
+        var franquicia = franquiciaInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/franquicia",
+                data: { franquicia: franquicia },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    // Formatear la ganancia y el promedio como moneda
+                    var formattedGanancia = response.ganancia.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    var formattedPromedio = response.promedio.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    
+                    resultadoContainer.html("La franquicia <strong>" + franquicia + "</strong> tiene " + response.cantidad + " películas, una ganancia total de " + formattedGanancia + " en dólares, con un promedio de ganancia de " + formattedPromedio + " en dólares.");
+                }
+
+            });
+        });
+
+        var paisInput = $("#pais-select");
+    
+    // Inicializar Select2 en el campo de texto
+    paisInput.select2({
+        data: paisOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona un País"
+    });
+
+    // Manejar selección de película y clic en el botón
+    $("#consultar-pais-button").click(function () {
+        var pais = paisInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/peliculas_pais",
+                data: { pais: pais },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    resultadoContainer.html("Se produjeron " + response.cantidad + " películas en <strong>" + pais + "</strong>.");
+                }
+
+            });
+        });
+        
+        var productoraInput = $("#productora-select");
+    
+    // Inicializar Select2 en el campo de texto
+    productoraInput.select2({
+        data: productoraOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona una Productora"
+    });
+
+    // Manejar selección de película y clic en el botón
+    $("#consultar-productora-button").click(function () {
+        var productora = productoraInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/productoras_exitosas",
+                data: { productora: productora },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    // Formatear la ganancia y el promedio como moneda
+                    var formattedGanancia = response.ganancia.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                    resultadoContainer.html("La productora <strong>" + productora + "</strong> ha tenido una ganancia de <strong>" + formattedGanancia + "</strong> en dolares por sus " + response.cantidad + " películas.");
+                }
+
+            });
+        });
+
+        var directorInput = $("#director-select");
+    
+    // Inicializar Select2 en el campo de texto
+    directorInput.select2({
+        data: directorOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona un Director"
+    });
+
+    // Manejar selección de película y clic en el botón
+    $("#consultar-director-button").click(function () {
+        var director = directorInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/get_director",
+                data: { director: director },
+                success: function (response) {
+            var resultadoContainer = $("#resultado-container");
+
+            // Crear una tabla HTML para mostrar la información de las películas
+            var peliculasTable = "<table><tr><th>Título</th><th>Fecha de Lanzamiento</th><th>Retorno</th><th>Presupuesto</th><th>Ganancia</th></tr>";
+
+            // Agregar filas a la tabla con la información de las películas
+            response.peliculas.forEach(function (pelicula) {
+                peliculasTable += "<tr><td>" + pelicula.title + "</td><td>" + pelicula.release_date +
+                                 "</td><td>" + pelicula.return + "</td><td>" + pelicula.budget +
+                                 "</td><td>" + pelicula.revenue + "</td></tr>";
+            });
+
+            peliculasTable += "</table>";
+            
+            resultadoContainer.html("<strong>" + director + "</strong>: su éxito medido en retorno es de " +
+                                    response.retorno + ", información de películas producidas: <br><br>" + peliculasTable);
+        }
+
+            });
+        });
+
+        var recomendacionInput = $("#recomendacion-select");
+    
+    // Inicializar Select2 en el campo de texto
+    recomendacionInput.select2({
+        data: peliculasOptions,
+        minimumInputLength: 3,  // Comenzar a filtrar después de ingresar al menos 3 caracteres
+        placeholder: "Selecciona una Película"
+    });
+
+    // Manejar selección de película y clic en el botón
+    $("#consultar-recomendacion-button").click(function () {
+        var titulo = recomendacionInput.val();
+
+         
+            $.ajax({
+                type: "GET",
+                url: "/recomendacion_1",
+                data: { titulo: titulo },
+                success: function (response) {
+                    var resultadoContainer = $("#resultado-container");
+                    // Formatear el array de recomendación como cadena JSON
+                    var recomendacion_1Formatted = JSON.stringify(response.recomendacion_1);
+                    var recomendacion_2Formatted = JSON.stringify(response.recomendacion_2);
+
+                resultadoContainer.html("Tu consulta es <strong>" + titulo + "</strong>. <br><br><strong>Modelo de Recomendación No. 1:</strong> <br><br>" + recomendacion_1Formatted + "<br><br><strong>Modelo de Recomendación No. 2:</strong> <br><br>" + recomendacion_2Formatted);
+                }
+
+            });
+        });
+
+        });
+    </script>
+</body>
+</html>
