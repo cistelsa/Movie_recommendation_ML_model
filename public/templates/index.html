@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link href="{{url_for('static', path='/css/styles.css')}}" rel="stylesheet" />
     <link rel="icon" type="image/x-icon" href="{{url_for('static', path='/img/favicon.ico')}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <script>
         var peliculasOptions = {{ selected_data_movies|tojson }};
@@ -33,7 +34,7 @@
       </div>
     <div class="search" id="flex-container">
         <div id="select-container">
-            <label for="idioma-select">Consulta cantidad de películas por Idioma:
+            <label for="idioma-select"><span id="label-input">Consulta cantidad de películas por Idioma:</span>
             <select class="js-example-basic-single" id="idioma-select" name="idioma">
                            <option value="" disabled selected>Selecciona un idioma</option>
            </select></label>
@@ -42,46 +43,48 @@
              
                 <br>
                 <br>            
-                <label for="pelicula-select">Consulta duración y año de la película :
+                <label for="pelicula-select"><span id="label-input">Consulta duración y año de la película :</span>
                 <select class="js-example-basic-single" id="pelicula-select" name="pelicula">
                     <option value="" disabled selected>Selecciona una película</option>
                 </select></label>
                 <button id="consultar-duracion-button">Ir</button>
                 <br>
                 <br>
-                <label for="franquicia-select">Consulta Cantidad de Películas y Ganancia por Franquicia:
+                <label for="franquicia-select"><span id="label-input">Cantidad de Películas y Ganancia por Franquicia:</span>
                 <select class="js-example-basic-single" id="franquicia-select" name="franquicia">
                     <option value="" disabled selected>Selecciona una franquicia</option>
                 </select></label>
                 <button id="consultar-franquicia-button">Ir</button>
                 <br>
                 <br>
-                <label for="pais-select">Consulta cantidad de peliculas por país:
+                <label for="pais-select"><span id="label-input">Consulta cantidad de peliculas por país:</span>
                 <select class="js-example-basic-single" id="pais-select" name="pais">
                     <option value="" disabled selected>Selecciona un País</option>
                 </select></label>
                 <button id="consultar-pais-button">Ir</button>
                 <br>
                 <br>
-                <label for="productora-select">Consulta Ganancia total y cantidad de películas por Productora:
+                <label for="productora-select"><span id="label-input">Consulta Ganancia total y cantidad de películas por Productora:</span>
                 <select class="js-example-basic-single" id="productora-select" name="productora">
                     <option value="" disabled selected>Selecciona una Productora</option>
                 </select></label>
                 <button id="consultar-productora-button">Ir</button>
                 <br>
                 <br>
-                <label for="director-select">Consulta datos importantes por Director:
+                <label for="director-select"><span id="label-input">Consulta datos importantes por Director:</span>
                 <select class="js-example-basic-single" id="director-select" name="director">
                     <option value="" disabled selected>Selecciona un Director</option>
                 </select></label>
                 <button id="consultar-director-button">Ir</button>
                 <br>
                 <br>
-                <label for="recomendacion-select">Consulta las 5 Películas recomendadas en 2 modelos ML:
+                <label for="recomendacion-select"><span id="label-input">Consulta las 5 Películas recomendadas en 2 modelos ML:</span>
                 <select class="js-example-basic-single" id="recomendacion-select" name="recomendacion">
                     <option value="" disabled selected>Selecciona una Película</option>
                 </select></label>
                 <button id="consultar-recomendacion-button">Ir</button>
+
+                <div id="resultado-container"></div>
 
         </div>
         <div class="other-content">
@@ -92,13 +95,12 @@
         </div>
     </div>
     
-    <div id="resultado-container"></div>
     <section id="pie-pagina">Data Engineer, Data Analyst, Data Scientist and ML: Camilo Ortiz - Modelo y Proyecto 100% Autoría - Todos los derechos reservados 2023 - Bogotá - Colombia</section>
     <script src="{{url_for('static', path='/js/script.js')}}"></script>
     
         <script>
         $(document).ready(function () {
-                        
+                                 
             var idiomaInput = $("#idioma-select");
     
     // Inicializar Select2 en el campo de texto
@@ -132,7 +134,7 @@
         placeholder: "Selecciona Película",
     });
 
-          
+            
     // Manejar selección de película y clic en el botón
     $("#consultar-duracion-button").click(function () {
         var pelicula = peliculaInput.val();

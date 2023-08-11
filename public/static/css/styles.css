@@ -148,13 +148,14 @@ header h1 {
 }
 
 #resultado-container {
-  background-color: #555;
-  color: #c8c8c8;
-  padding: 20px;
-  border-radius: 5px;
-  width: 50%;
-  max-width: 100%;
-  margin-left: 15px
+    background-color: #555;
+    color: #c8c8c8;
+    padding: 20px;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 90%;
+    margin-left: 15px;
+    margin-top: 15px;
 }
 
 section#pie-pagina {
@@ -169,6 +170,7 @@ section#pie-pagina {
 #select-container {
   flex: 1;
   padding: 30px;
+  text-align: center;
 }
 
 .other-content{
@@ -240,7 +242,44 @@ label {
   color: #444;
 }
 
+#label-input {
+  float: left;
+  margin-left: 30px;
+}
 
+@media screen and (max-width: 500px) {
+#flex-container {
+  flex-direction: column;
+}
+
+.logo {
+  height: 30px;
+}
+
+.social-icons img {
+  height: 25px;
+}
+
+header h1 {
+  font-size: 20px;
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.title h1 {
+  font-size: 200% !important;
+  line-height: 3 !important;
+  text-align: center !important;
+}
+
+#resultado-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 85%;
+}
+}
 
 /* ---------------------------------------------
     Title Style Attributes
