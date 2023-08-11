@@ -253,11 +253,15 @@ label {
 }
 
 .logo {
-  height: 30px;
+  height: 25px;
 }
 
 .social-icons img {
   height: 25px;
+}
+
+.social-icons {
+ flex-direction: column;
 }
 
 header h1 {
@@ -268,7 +272,7 @@ header h1 {
 }
 
 .title h1 {
-  font-size: 200% !important;
+  font-size: 100% !important;
   line-height: 3 !important;
   text-align: center !important;
 }
