@@ -40,9 +40,6 @@ Estamos comprometidos en continuar mejorando y expandiendo nuestro Proyecto MVP 
 Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y actualizaciones reflejan nuestro compromiso de proporcionar una plataforma de recomendación de películas cada vez más robusta y emocionante. ¡Mantente atento a nuestras actualizaciones y no dudes en compartir tus comentarios y sugerencias!
 
 ## Mapa del Sitio
-| Carpeta       | Función        | Ejercicios | Video
-|:--------------------|:--------------------:|:--------------------:|:--------------------
-| IA Ética | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://github.com/institutohumai/cursos-python/blob/master/MachineLearning/0_IAEtica/ia_etica.pdf)  | - | [Video](https://www.youtube.com/watch?v=oMJfeV09d3k) |
 
 | Carpeta                   | Función                   | Recurso           | Video
 |:--------------------------|:----------------------------------------------:|:-------------:|:-------------
@@ -52,6 +49,7 @@ Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y act
 | data/launch               | Contiene los dataset con tablas normalizadas a producción             |
 | data/ML                   | Contiene el dataset pregrabado de recomendaciones                     |
 | data/original             | Contiene la copia de los ultimos dataset extraidos                    |
+| EDA                       | Contiene el analisis exploratorio de datos de los datasets                    |
 | media                     | Contiene archivos de diseño gráfico, animación o video                |
 | model                     | Almacena los diferentes modelos de recomendación                      |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lgaMn1qyzBtJi0VqD6zr88Nvu4eTZTPo?usp=sharing) | [Video](#) 
 | public                    | Carpeta Raiz para publicar en la web                                  |
