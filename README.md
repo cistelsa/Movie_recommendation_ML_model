@@ -79,6 +79,7 @@ Debemos tener en cuenta que vamos a implementar automatización de datos de inic
 <br>
 [Templates - FastAPI - Jinja2](https://fastapi.tiangolo.com/es/advanced/templates/)
 
+![Data Analysis](source/img/banner_data_analysis.jpg)
 
 ### Futuro Desarrollo de un Dashboard con Power BI 📊
 
@@ -202,10 +203,12 @@ Hemos creado una serie de iconos que resaltan las diferentes funciones y caracte
 
 Para complementar nuestra identidad visual, hemos creado banners que capturan la esencia de nuestro proyecto:
 
-<img src="source/img/banner_herramientas.png" alt="Herramientas" width="600px" height="auto" /><br>
+<center><img src="source/img/banner_herramientas.png" alt="Herramientas" width="600px" height="auto" /></center><br>
+
 **Key Enabler:** Por estas herramientas fué posible que nuestro proyecto MVP de recomendaciones se encuentré a disposición para los usuarios en este momento.
 
-<img src="source/img/banner_project.jpg" alt="Banner" width="300px" height="auto" /><br>
+<center><img src="source/img/banner_project.jpg" alt="Banner" width="700px" height="auto" /></center><br>
+
 *Banner de Exposición:* Destacamos nuestro proyecto en exposiciones y presentaciones con un diseño llamativo que refleja la innovación y el valor de CisFlix.
 
 Estos elementos gráficos son el resultado de nuestras mejores prácticas en diseño web y publicidad. Estamos comprometidos en brindarte una experiencia visual única mientras exploras nuestra plataforma y aprendes sobre nuestro proyecto.
