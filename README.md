@@ -53,7 +53,7 @@ Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y act
 | data/ML                   | Contiene el dataset pregrabado de recomendaciones                     |
 | data/original             | Contiene la copia de los ultimos dataset extraidos                    |
 | media                     | Contiene archivos de diseño gráfico, animación o video                |
-| model                     | Almacena los diferentes modelos de recomendación                      |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/institutohumai/cursos-python/blob/master/MachineLearning/11_Recomendacion/sistemas_recomendacion.ipynb) | [Video 1](https://www.youtube.com/watch?v=9KWVIZJfm8Q) [Video 2](https://www.youtube.com/watch?v=d-MiHa4cRqo) 
+| model                     | Almacena los diferentes modelos de recomendación                      |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lgaMn1qyzBtJi0VqD6zr88Nvu4eTZTPo?usp=sharing) | [Video](#) 
 | public                    | Carpeta Raiz para publicar en la web                                  |
 | public/static             | Carpeta Raiz para Jinja2 archivos css, img y js                       |
 | public/static/css         | Almacena archivos de estilos .css                                     |
