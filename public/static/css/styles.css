@@ -283,9 +283,12 @@ header h1 {
 
 #resultado-container {
   position: fixed;
-  bottom: 10%;
+  bottom: 0; /* Cambiado a 0 para que esté pegado en la parte inferior */
   left: 0;
-  width: 85%;
+  width: 100%; /* Cambiado a 100% para ocupar todo el ancho */
+  padding: 10px; /* Espacio interno para el contenido */
+  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  z-index: 1000; /* Valor de z-index para asegurar que esté por encima de otros elementos */
 }
 
 section#pie-pagina {
