@@ -39,6 +39,14 @@ Estamos comprometidos en continuar mejorando y expandiendo nuestro Proyecto MVP 
 
 Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y actualizaciones reflejan nuestro compromiso de proporcionar una plataforma de recomendación de películas cada vez más robusta y emocionante. ¡Mantente atento a nuestras actualizaciones y no dudes en compartir tus comentarios y sugerencias!
 
+## Key Enabler
+Mensionamos los recursos, librerías, proyectos y aplicaciones que hicieron que este **`VPM`** fuera posible, agradecemos su existencia y a quienes están detras de cada uno de ellos.
+
+<center>
+  <img src="source/img/banner_herramientas.png" alt="herramientas" width="600px" height="auto" />
+</center><br>
+
+
 ## Mapa del Sitio
 
 | Carpeta                   | Función                   | Recurso           | Video
@@ -51,7 +59,7 @@ Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y act
 | data/original             | Contiene la copia de los ultimos dataset extraidos                    |
 | EDA                       | Contiene el analisis exploratorio de datos de los datasets                    |
 | media                     | Contiene archivos de diseño gráfico, animación o video                |
-| model                     | Almacena los diferentes modelos de recomendación                      |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lgaMn1qyzBtJi0VqD6zr88Nvu4eTZTPo?usp=sharing) | [Video](#) 
+| model                     | Almacena los diferentes modelos de recomendación                      |[![ml_model_TF-IDF_1.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lgaMn1qyzBtJi0VqD6zr88Nvu4eTZTPo?usp=sharing) <br>[![ml_model_TF-IDF_1.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/140sjYDmoPL6nQzpjuPskPIjMHSnozNTP?usp=sharing) | [Video](#) 
 | public                    | Carpeta Raiz para publicar en la web                                  |
 | public/static             | Carpeta Raiz para Jinja2 archivos css, img y js                       |
 | public/static/css         | Almacena archivos de estilos .css                                     |
@@ -60,12 +68,17 @@ Agradecemos tu interés y apoyo en nuestro proyecto. Estas futuras mejoras y act
 | public/templates          | Plantilla de Jinja2 html                                              |
 | source/img                | Almacena imágenes y elementos gráficos internos                       |
 | .gitignore                | Archivo para evitar la subida de algunas carpetas o archivos a GitHub |
-| clean_data_beta.ipynb     | Notebook de limpieza automatizada 1                                   |   
-| clean_data_launch.ipynb   | Notebook de limpieza y normalización de tablas                        |
+| clean_data_beta.ipynb     | Notebook de limpieza automatizada 1                                   |[![ml_model_TF-IDF_1.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1GbqCVVg0R7dalytpIthQYaE08d7TnPxO?usp=sharing) | [Video](#)
+| clean_data_launch.ipynb   | Notebook de limpieza y normalización de tablas                        |[![ml_model_TF-IDF_1.ipynb](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/136sRvnK-AkEHRAlyIKTC5kO4FJTvzbb0?usp=sharing) | [Video](#)
 | functions.py              | Funciones necesarias para FastAPI                                     |
 | main.py                   | Archivo de la aplicación FastAPI                                      |
 | requeriments.txt          | Requerimientos para instalar en Render                                |
 
+## Estructura de Relaciones de Tablas 🗂️
+
+Nuestro proyecto utiliza una sólida estructura de base de datos para almacenar y gestionar datos de manera eficiente. A continuación, ofrecemos una visión general de las tablas y sus relaciones clave:
+
+[![Estructura de Datos](source/img/db-estructura.jpg)](source/img/db-estructura.jpg)
 
 ## Ingeniería a flor de piel.
 *En esta sección encontrarás los casos de ingeniería vanzada, los cuales inicialmente fueron un obstáculo para que el proyecto siguiera adelante*
@@ -79,6 +92,8 @@ Debemos tener en cuenta que vamos a implementar automatización de datos de inic
 <br>
 [Templates - FastAPI - Jinja2](https://fastapi.tiangolo.com/es/advanced/templates/)
 
+
+
 ![Data Analysis](source/img/banner_data_analysis.jpg)
 
 ### Futuro Desarrollo de un Dashboard con Power BI 📊
@@ -90,6 +105,8 @@ Hasta ahora, hemos concentrado nuestros esfuerzos en Data Engineering, Data Scie
 En nuestra próxima actualización, tenemos como objetivo crear un Dashboard interactivo utilizando Power BI. Aprovecharemos la calidad de los datos normalizados para visualizar tendencias, patrones y estadísticas relevantes sobre las películas y las preferencias de los usuarios. Este Dashboard no solo brindará una visión intuitiva de los datos, sino que también permitirá a los usuarios explorar la información de manera más profunda y tomar decisiones informadas sobre sus selecciones de películas.
 
 El uso de Power BI nos permitirá presentar de manera efectiva el trabajo de Data Engineering y Data Science que hemos realizado hasta ahora. Este Dashboard actuará como una ventana al mundo de las recomendaciones de películas, mostrando cómo nuestras tecnologías y metodologías están trabajando en conjunto para ofrecer una experiencia de usuario excepcional.
+
+<iframe title="Report Section" width="600" height="373.5" src="https://app.fabric.microsoft.com/view?r=eyJrIjoiZmNhMDAwYTUtMzcxYy00N2E5LWE5YzYtNDUxY2E1ZjY0ZGE2IiwidCI6Ijc3ZjhjMzAzLWVmNDgtNDEyZi1iYmI4LTA4OWRlN2I4MmM4YSIsImMiOjR9&embedImagePlaceholder=true" frameborder="0" allowFullScreen="true"></iframe>
 
 Mantente atento a futuras actualizaciones en nuestro repositorio, ya que compartiremos más detalles sobre la creación y lanzamiento de este emocionante Dashboard con Power BI. Tu apoyo y entusiasmo son fundamentales para impulsar nuestro proyecto hacia adelante. Si tienes alguna sugerencia o comentario sobre esta próxima fase, no dudes en compartirlo. ¡Estamos ansiosos por seguir avanzando y brindarte lo mejor en recomendación de películas y análisis de datos!
 
@@ -202,10 +219,6 @@ Hemos creado una serie de iconos que resaltan las diferentes funciones y caracte
 ### Banners
 
 Para complementar nuestra identidad visual, hemos creado banners que capturan la esencia de nuestro proyecto:
-
-<center><img src="source/img/banner_herramientas.png" alt="Herramientas" width="600px" height="auto" /></center><br>
-
-**Key Enabler:** Por estas herramientas fué posible que nuestro proyecto MVP de recomendaciones se encuentré a disposición para los usuarios en este momento.
 
 <center><img src="source/img/banner_project.jpg" alt="Banner" width="700px" height="auto" /></center><br>
 
