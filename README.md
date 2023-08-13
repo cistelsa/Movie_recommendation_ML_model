@@ -84,15 +84,62 @@ Nuestro proyecto utiliza una sólida estructura de base de datos para almacenar 
 *En esta sección encontrarás los casos de ingeniería vanzada, los cuales inicialmente fueron un obstáculo para que el proyecto siguiera adelante*
 >1. Datos mal estructurados del dataset (no coinciden en sus respectivas columnas)
 
-Debemos tener en cuenta que vamos a implementar automatización de datos de inicio a fin y este obstaculo debe ser superado de forma automática, aunque el reintegro de esos datos si es que sirven debe hacerse de forma manual en un dataset llamado
+Debemos tener en cuenta que vamos a implementar automatización de datos de inicio a fin y este obstaculo debe ser superado de forma automática, aunque el reintegro de esos datos si es que sirven debe hacerse de forma manual en un dataset llamado `movies_dataset_anomalies_solution.csv` para luego reunirse de forma automática al dataframe, lo podrás ver en vivo en el Colab que está en mapa del sitio. A continuación el fragmento de la función:
+
+```
+def verificar_errores(df, archivo_csv, columna_id):
+    # Copiamos la columna id para mantener el valor original
+    df["original_id"] = df[columna_id]
+    # Identificar las filas con tipos de dato no válidos en la columna "id"
+    # Por ejemplo, si esperamos que "id" contenga solo valores numéricos (int o float):
+    df[columna_id] = pd.to_numeric(df[columna_id], errors="coerce")
+    invalid_rows = df[columna_id].isnull()
+    df_anomalies = df[invalid_rows].copy()  # Utilizamos .copy() para asegurarnos de tener una copia independiente
+
+    # Leer el archivo CSV existente (si existe) y cargar su contenido en un DataFrame de pandas
+    if not os.path.exists(archivo_csv):
+        return False, df_anomalies  # El archivo CSV no existe, no hay duplicados
+
+    # Cargar el archivo CSV en un DataFrame
+    df_existente = pd.read_csv(archivo_csv)
+
+    # Convertir la columna "id" del DataFrame existente en un conjunto para mejorar la eficiencia de búsqueda
+    ids_existente_set = set(df_existente[columna_id])
+
+    # Reemplazar los valores NaN en la columna "id" de df_anomalies por los valores originales en formato string
+    df_anomalies.loc[invalid_rows, columna_id] = df_anomalies.loc[invalid_rows, "original_id"]
+
+    # Verificar si los registros del DataFrame actual (df_anomalies) están duplicados con los registros existentes
+    duplicados = df_anomalies[columna_id].isin(ids_existente_set).any()
+
+    # Eliminar la columna "original_id" que ya no es necesaria
+    df_anomalies.drop("original_id", axis=1, inplace=True)
+
+    return duplicados, df_anomalies
+```
+>2. Comillas simples en los nombres de las personas en Inglés (por ejemplo O`'`Donell)
+
+Para realizar el proceso de desanidar los datos de algunas columnas que están en formato Json, se realizó un análisis exploratorio profundo e identificar que nos generaba el error para evitar en un máximo la pérdida de información, a continuación la función estrella que nos permitió continuar sin tener pérdida de datos:
+
+```
+def remove_single_quotes_within_double_quotes(text):
+    pattern = r'"([^"]*?\'[^"]*?)"'
+    matches = re.findall(pattern, text)
+    for match in matches:
+        text = text.replace(match, match.replace("'", " "))
+    return text
+```
+
 
 ## Recursos Importantes
 
 [FastAPI - Jinja2](https://www.youtube.com/watch?v=_YJLpJp4xq8)
 <br>
 [Templates - FastAPI - Jinja2](https://fastapi.tiangolo.com/es/advanced/templates/)
+<center>
 
-
+> **`Ahora que te haz documentado un poco puedes revisar nuestro MVP en vivo:`** <br><br>
+<a href="https://mlops.cistelsa.com" title="Demo"><img src="source/img/img-demo.png" alt="Demo" width="auto" height="50px" /> <a href="https://cistelsa.com/video-proyecto-MVP-MLOps-CisFlix.mp4" title="Video"><img src="source/img/img-video.png" alt="Demo" width="auto" height="50px" /></a></center>
 
 ![Data Analysis](source/img/banner_data_analysis.jpg)
 
@@ -105,8 +152,6 @@ Hasta ahora, hemos concentrado nuestros esfuerzos en Data Engineering, Data Scie
 En nuestra próxima actualización, tenemos como objetivo crear un Dashboard interactivo utilizando Power BI. Aprovecharemos la calidad de los datos normalizados para visualizar tendencias, patrones y estadísticas relevantes sobre las películas y las preferencias de los usuarios. Este Dashboard no solo brindará una visión intuitiva de los datos, sino que también permitirá a los usuarios explorar la información de manera más profunda y tomar decisiones informadas sobre sus selecciones de películas.
 
 El uso de Power BI nos permitirá presentar de manera efectiva el trabajo de Data Engineering y Data Science que hemos realizado hasta ahora. Este Dashboard actuará como una ventana al mundo de las recomendaciones de películas, mostrando cómo nuestras tecnologías y metodologías están trabajando en conjunto para ofrecer una experiencia de usuario excepcional.
-
-<iframe title="Report Section" width="600" height="373.5" src="https://app.fabric.microsoft.com/view?r=eyJrIjoiZmNhMDAwYTUtMzcxYy00N2E5LWE5YzYtNDUxY2E1ZjY0ZGE2IiwidCI6Ijc3ZjhjMzAzLWVmNDgtNDEyZi1iYmI4LTA4OWRlN2I4MmM4YSIsImMiOjR9&embedImagePlaceholder=true" frameborder="0" allowFullScreen="true"></iframe>
 
 Mantente atento a futuras actualizaciones en nuestro repositorio, ya que compartiremos más detalles sobre la creación y lanzamiento de este emocionante Dashboard con Power BI. Tu apoyo y entusiasmo son fundamentales para impulsar nuestro proyecto hacia adelante. Si tienes alguna sugerencia o comentario sobre esta próxima fase, no dudes en compartirlo. ¡Estamos ansiosos por seguir avanzando y brindarte lo mejor en recomendación de películas y análisis de datos!
 
@@ -226,7 +271,17 @@ Para complementar nuestra identidad visual, hemos creado banners que capturan la
 
 Estos elementos gráficos son el resultado de nuestras mejores prácticas en diseño web y publicidad. Estamos comprometidos en brindarte una experiencia visual única mientras exploras nuestra plataforma y aprendes sobre nuestro proyecto.
 
+<center>
+
+> **`Si te lo perdíste aquí puedes revisar nuestro MVP en vivo:`** <br><br>
+<a href="https://mlops.cistelsa.com" title="Demo"><img src="source/img/img-demo.png" alt="Demo" width="auto" height="50px" /> <a href="https://cistelsa.com/video-proyecto-MVP-MLOps-CisFlix.mp4" title="Video"><img src="source/img/img-video.png" alt="Demo" width="auto" height="50px" /></a></center>
+
 ¡Gracias por tu interés en nuestro proyecto! Estamos emocionados por continuar mejorando y brindar una experiencia excepcional en recomendación de películas y análisis de datos. Mantente atento a las actualizaciones y no dudes en compartir tus comentarios y sugerencias. ¡Tu apoyo es fundamental para nosotros! 👏
 
 ¡Gracias por ser parte de la emocionante travesía de CisFlix!
+
+## Autor
+<img src="source/img/autor-camilo-ortiz.png" alt="Banner" width="70px" height="auto" /><br> 
+####  Camilo Ortiz López
+#### CEO - Cistelsa
 
