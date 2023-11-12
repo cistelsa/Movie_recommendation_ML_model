@@ -68,6 +68,6 @@ def recomendacion_1( titulo: str ):
     response_data = {"recomendacion_1":recomendacion_1, "recomendacion_2":recomendacion_2}
     return JSONResponse(content=response_data)
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+#if __name__ == "__main__":
+#    import uvicorn
+#    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
